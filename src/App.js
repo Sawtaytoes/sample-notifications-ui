@@ -24,7 +24,11 @@ const App = () => (
 										userId={value}
 									>
 										{({ hasSubscription }) => (
-											JSON.stringify(hasSubscription)
+											<div>
+												{
+													JSON.stringify(hasSubscription)
+												}
+											</div>
 										)}
 									</FetchUserSubscription>
 								))
