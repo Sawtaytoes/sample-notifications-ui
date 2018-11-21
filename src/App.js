@@ -4,6 +4,7 @@ import './App.css'
 import FetchSubscriptions from './FetchSubscriptions'
 import FetchUserSubscription from './FetchUserSubscription'
 import InputListener from './InputListener'
+import Toggler from './Toggler'
 // import UserSubscriptions from './UserSubscriptions'
 
 const App = () => (
@@ -17,18 +18,30 @@ const App = () => (
 						<FetchSubscriptions>
 							{({ subscriptions }) => (
 								subscriptions
-								.map(({ id }) => (
+								.map(({
+									id,
+									name,
+								}) => (
 									<FetchUserSubscription
 										key={id}
 										subscriptionId={id}
 										userId={value}
 									>
-										{({ hasSubscription }) => (
-											<div>
-												{
-													JSON.stringify(hasSubscription)
-												}
-											</div>
+										{({
+											hasSubscription,
+											setSubscription,
+										}) => (
+											typeof hasSubscription === 'boolean'
+											? (
+												<div>
+													<Toggler
+														label={name}
+														enabled={hasSubscription}
+														onClick={setSubscription}
+													/>
+												</div>
+											)
+											: null
 										)}
 									</FetchUserSubscription>
 								))
